@@ -29,7 +29,7 @@ class Program
             listOfNumbersSum = listOfNumbersSum + number;
         }
 
-        int listOfNumbersAvg = listOfNumbersSum / listOfNumbers.Count;
+        float listOfNumbersAvg = (float)listOfNumbersSum / listOfNumbers.Count;
 
 
         // Average number
