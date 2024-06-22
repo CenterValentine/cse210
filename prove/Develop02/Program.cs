@@ -13,8 +13,9 @@ class Program
                 "2. Display all entries",
                 "3. Save",
                 "4. Load",
-                "5. ",
-                "6 Quit"
+                "5. Store in Airtable (do not use)",
+                "6. Retrieve from Airtable (do not use)",
+                "7. Quit"
                 };
 
             Console.WriteLine("\nWelcome to JournalGPT!  Let's get started!");
@@ -35,30 +36,44 @@ class Program
             switch (menuSelection)
             {
                 case 1:
-                    // string input = Console.ReadLine();
                     Entry newEntry = new Entry();
                     PromptGenerator newPrompt = new PromptGenerator();
+                    // write or writeline?
                     Console.WriteLine(newEntry._prompt = newPrompt.GetRandomPrompt());
                     newEntry._entry = Console.ReadLine();
+                    newEntry._date = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
                     DavidsJournal.AddEntry(newEntry);
                     break;
                 case 2:
                     DavidsJournal.DisplayAll();
                     break;
                 case 3:
+                    Console.Write("What is the file name? ");
+                    string fileName = Console.ReadLine();
+                    List<Entry> Entries = DavidsJournal._Entries;
+                    DavidsJournal.saveEntries(fileName, Entries);
                     break;
                 case 4:
+                    Console.Write("What is the file name? ");
+                    string fileName1 = Console.ReadLine();
+                    DavidsJournal.loadEntries(fileName1);
                     break;
-                case 5:
-                    break;
+                // case 5:
+                //     await DavidsJournal.FetchJournalEntries;
+                //     break;
                 case 6:
+
+                    break;
+                case 7:
+                    Console.WriteLine("Goodbye!");
+                    Environment.Exit(0);
                     break;
             }
         };
 
 
         int menuSelection = menuStart();
-        while (menuSelection != 6)
+        while (menuSelection != 7)
         {
             menuReader(menuSelection);
             menuSelection = menuStart();
