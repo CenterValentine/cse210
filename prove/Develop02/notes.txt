@@ -1,0 +1,33 @@
+
+
+1 Write Journal
+2 Display Journals
+3 Save journal to file
+4 Load Journal from a file
+5 Menu
+6 Quit
+7 View prompts
+//search entries
+//New Prompts
+
+class JournalEntry()
+    public string _entryText = ""
+    public string _entryDate = ""
+    public JournalEntry() ${{_date}: {_prompt}{_entry}}
+//{Date:{},Entry:{}}
+    public DisplayEntry()
+
+class Journal()
+    public _FileName = ""
+    public List string _prompts = []
+    public list <JournalEntry>_entries = []
+    
+    public GetRandomQ()
+    public DisplayEntries()
+    public Menu()
+    public LoadFile()
+    public SaveFile()
+    public end()
+
+//class PromtGenerator
+
