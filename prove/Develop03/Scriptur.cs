@@ -106,10 +106,10 @@ public class Scripture
     {
         if (start < 1)
         {
-            Console.WriteLine("\nWe've blanked out all the words! ");
+            Console.WriteLine("\n\nWe've blanked out all the words! ");
             System.Threading.Thread.Sleep(500);
-            Console.WriteLine("\nMe thinks you have this memorized!");
-            Console.WriteLine("Nice job. Goodbye!");
+            Console.WriteLine("\nMe thinks you have this memorized!\n");
+            Console.WriteLine("Nice job. Goodbye!\n");
             Environment.Exit(0);
         }
 

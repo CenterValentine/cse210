@@ -65,7 +65,7 @@ class Program
             input = BlahMenu();
             if (input.ToLower() == "h")
             {
-
+                scripture.Hint();
             }
 
             else if (input.ToLower() == "quit")
