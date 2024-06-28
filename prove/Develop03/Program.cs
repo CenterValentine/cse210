@@ -1,55 +1,86 @@
 using System;
 
 
-
-using System.Collections.Generic;
-
-
-
 class Program
 {
-
-    
 
 
     static void Main(string[] args)
     {
+        Console.Clear();
 
-        Random random = new Random();
+        // Introduction
+        string BlahStart(Scripture scripture)
+        {
+            Console.WriteLine("\nWelcome to the Scripture Memory Program!\n");
+            System.Threading.Thread.Sleep(500);
+            Console.WriteLine($"Would you like to enter a scripture? (y/n) ");
+            Console.Write("(default scripture: ");
+            scripture.DisplayReference();
+            Console.Write(")\n");
+            string input = Console.ReadLine();
+            return input;
+        }
 
-        int operatingCode = 1;
-        while (operatingCode != 0) {
-            if (operatingCode == 1) {
-                Console.WriteLine("Enter a scripture reference:");
-                
-                string reference = Console.ReadLine();
-                Console.WriteLine("Enter the text of the scripture:");
-                string text = Console.ReadLine();
-                operatingCode = 2;
+        string BlahMenu()
+        {
+            Console.WriteLine("\n\nPress Enter to continue hiding words or type quit to exit.");
+            Console.WriteLine("Type H/h for a hint!");
+            string input = Console.ReadLine();
+            return input;
+        }
+
+        // start program
+        string scripture_text = "50 But, behold, the servant said unto the Lord of the vineyard: Spare it a little longer. 51 And the Lord said: Yea, I will spare it a little longer, for it grieveth me that I should lose the trees of my vineyard.";
+        Scripture scripture = new Scripture(new Reference("Jacob", "5", "50", "51"), scripture_text);
+        string input = BlahStart(scripture);
+
+        if (input == "y")
+        {
+            Console.WriteLine("Enter a scripture reference:");
+            string referenceText = Console.ReadLine();
+
+            Console.WriteLine("Enter the text of the scripture:");
+            string referenceContent = Console.ReadLine();
+            scripture = new Scripture(new Reference(referenceText), referenceContent);
+        }
+
+
+        while (input.ToLower() != "quit")
+        {
+            // switch (input.ToLower())
+            // {
+            //     case "quit":
+            //         break;
+            //     case "h":
+            //         scripture.Hint();
+            //         break;
+            //     default:
+            //         Console.Clear();
+            //         scripture.DisplayAll();
+            //         scripture.HideRandomWord();
+            //         break;
+            // }
+
+            input = BlahMenu();
+            if (input.ToLower() == "h")
+            {
+
             }
 
-// Store a scripture, including both the reference (for example "John 3:16") and the text of the scripture.
-// quit
+            else if (input.ToLower() == "quit")
+            { break; }
+
+            else
+            {
+                Console.Clear();
+                scripture.DisplayAll();
+            }
+
+
         }
     }
 
 }
 
 
-
-
-// Clear the console screen and display the complete scripture, including the reference and the text.
-// Prompt the user to press the enter key or type quit.
-// If the user types quit, the program should end.
-// If the user presses the enter key (without typing quit), the program should hide a few random words in the scripture, clear the console screen, and display the scripture again.
-// The program should continue prompting the user and hiding more words until all words in the scripture are hidden.
-// When all words in the scripture are hidden, the program should end.
-// When selecting the random words to hide, for the core requirements, you can select any word at random, even if the word was already hidden. (As a stretch challenge, try to randomly select from only those words that are not already hidden.)
-
-
-// Design Requirements
-// In addition your program must:
-
-// Use the principles of Encapsulation, including proper use of classes, methods, public/private access modifiers, and follow good style throughout.
-// Contain at least 3 classes in addition to the Program class: one for the scripture itself, one for the reference (for example "John 3:16"), and to represent a word in the scripture.
-// Provide multiple constructors for the scripture reference to handle the case of a single verse and a verse range ("Proverbs 3:5" or "Proverbs 3:5-6").

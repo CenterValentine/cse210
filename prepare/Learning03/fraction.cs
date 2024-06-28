@@ -51,6 +51,6 @@ public class Fraction
 
     public string GetFractionString()
     {
-
+return "";
     }
 }

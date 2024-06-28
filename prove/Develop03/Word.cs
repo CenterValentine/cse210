@@ -5,10 +5,10 @@ public class Word
     private string _word;
     private bool _hidden;
 
-    Word(string some, bool hidden)
+    public Word(string some)
     {
         _word = some;
-        _hidden = hidden;
+        _hidden = false;
     }
 
     public void Hide()
@@ -22,17 +22,29 @@ public class Word
 
     public void Toggle()
     {
-        if (_hidden == false) {
+        if (_hidden == false)
+        {
             _hidden = true;
         }
-        else {
+        else
+        {
             _hidden = false;
         }
+    }
+
+    public string GetWord()
+    {
+        return _word;
     }
 
     public bool IsHidden()
     {
         return _hidden;
+    }
+
+    public void DisplayWord()
+    {
+        Console.Write($" {_word}");
     }
 
 }
