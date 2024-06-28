@@ -30,55 +30,47 @@ class Program
             return input;
         }
 
-        // start program
         string scripture_text = "50 But, behold, the servant said unto the Lord of the vineyard: Spare it a little longer. 51 And the Lord said: Yea, I will spare it a little longer, for it grieveth me that I should lose the trees of my vineyard.";
         Scripture scripture = new Scripture(new Reference("Jacob", "5", "50", "51"), scripture_text);
+
+
         string input = BlahStart(scripture);
-
-        if (input == "y")
+        while (true)
         {
-            Console.WriteLine("Enter a scripture reference:");
-            string referenceText = Console.ReadLine();
-
-            Console.WriteLine("Enter the text of the scripture:");
-            string referenceContent = Console.ReadLine();
-            scripture = new Scripture(new Reference(referenceText), referenceContent);
-        }
-
-
-        while (input.ToLower() != "quit")
-        {
-            // switch (input.ToLower())
-            // {
-            //     case "quit":
-            //         break;
-            //     case "h":
-            //         scripture.Hint();
-            //         break;
-            //     default:
-            //         Console.Clear();
-            //         scripture.DisplayAll();
-            //         scripture.HideRandomWord();
-            //         break;
-            // }
-
-            input = BlahMenu();
-            if (input.ToLower() == "h")
+            switch (input.ToLower())
             {
-                Console.Clear();
-                scripture.DisplayAll();
-                scripture.Hint();
+                case "quit":
+                    scripture.DetectEndProgram(1, input.ToLower());
+                    break;
+                case "y":
+                    Console.WriteLine("Enter a scripture reference:");
+                    string referenceText = Console.ReadLine();
+                    Console.WriteLine("Enter the text of the scripture:");
+                    string referenceContent = Console.ReadLine();
+                    scripture = new Scripture(new Reference(referenceText), referenceContent);
+                    break;
+                case "h":
 
-            }
-
-            else if (input.ToLower() == "quit")
-            { scripture.DetectEndProgram(0) }
-
-            else
-            {
-                Console.Clear();
-                scripture.DisplayAll();
-                scripture.HideRandomWord();
+                    scripture.Hint();
+                    scripture.hiddenWords();
+                    input = BlahMenu();
+                    break;
+                case "":
+                    Console.Clear();
+                    scripture.DisplayAll();
+                    scripture.HideRandomWord();
+                    input = BlahMenu();
+                    break;
+                case "n":
+                    input = BlahMenu();
+                    Console.Clear();
+                    scripture.DisplayAll();
+                    scripture.HideRandomWord();
+                    break;
+                default:
+                    Console.WriteLine("Invalid input. Please try again.");
+                    input = BlahMenu();
+                    break;
             }
 
 

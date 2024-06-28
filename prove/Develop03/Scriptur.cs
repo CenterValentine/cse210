@@ -5,6 +5,8 @@ public class Scripture
     private Reference _reference;
     private List<Word> _words = new List<Word>();
 
+    private bool _hiddenWords = false;
+
     private void ScriptureWords(string[] words)
     {
         foreach (string word in words)
@@ -21,6 +23,10 @@ public class Scripture
         ScriptureWords(words);
     }
 
+    public void hiddenWords()
+    {
+        _hiddenWords = true;
+    }
     public void DisplayReference()
     {
         _reference.DisplayAll();
@@ -34,8 +40,6 @@ public class Scripture
 
         int hiddenWordsCount = 0;
         hiddenWordsCount++;
-
-
         Random random = new Random();
         int randomWHideCount = random.Next(1, 4);
         List<Word> unhiddenWords = new List<Word>();
@@ -59,22 +63,27 @@ public class Scripture
     }
 
     //  Provides one word that has been hidden. 
-    public void Hint()
+    public void Hint(bool firstTime = false)
     {
         Random random = new Random();
-
-        bool isHidden = false;
-        while (!isHidden)
+        int i = 0;
+        while (_words.Count > i && !firstTime)
         {
             int index = random.Next(_words.Count);
+            Console.WriteLine(_words[index].IsHidden());
             if (_words[index].IsHidden())
             {
-                isHidden = true;
                 Console.Write("\n\nYour hint is: ");
                 _words[index].DisplayWord();
+                System.Threading.Thread.Sleep(1000);
                 Console.Write("\n");
+                break;
             }
+
+            i++;
         }
+        if (i == _words.Count)
+        { Console.WriteLine("No words are hidden."); }
     }
 
     public void DisplayAll()
@@ -93,27 +102,26 @@ public class Scripture
             }
             else
             {
-
                 word.DisplayWord();
-
             }
 
 
         }
         // Console.WriteLine('\n');
-
     }
 
-    public static void DetectEndProgram(int start)
+    public void DetectEndProgram(int start, string quit = "")
     {
         if (start < 1)
         {
             Console.WriteLine("\n\nWe've blanked out all the words! ");
-            System.Threading.Thread.Sleep(500);
             Console.WriteLine("\nMe thinks you have this memorized!\n");
-            Console.WriteLine("Nice job. Goodbye!\n");
+        }
+        System.Threading.Thread.Sleep(500);
+        if (start < 1 || quit == "quit")
+        {
+            Console.WriteLine("You did great! Goodbye!\n");
             Environment.Exit(0);
         }
-
     }
 }
