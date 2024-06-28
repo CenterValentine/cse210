@@ -29,7 +29,7 @@ public class Scripture
     // Log all words in Scripture.
 
     // Randomly hide 1-3 _words of Scripture.
-    private void HideRandomWord()
+    public void HideRandomWord()
     {
 
         int hiddenWordsCount = 0;
@@ -48,9 +48,7 @@ public class Scripture
         for (int i = 0; i < randomWHideCount; i++)
         {
             int index = random.Next(unhiddenWords.Count);
-
-            DetectEndProgram(unhiddenWords.Count, _words.Count);
-            Console.WriteLine($"unhiddenWordsCount: {unhiddenWords.Count}");
+            DetectEndProgram(unhiddenWords.Count);
             unhiddenWords[index].Hide();
         }
         //  Simple Version
@@ -64,6 +62,7 @@ public class Scripture
     public void Hint()
     {
         Random random = new Random();
+
         bool isHidden = false;
         while (!isHidden)
         {
@@ -71,8 +70,9 @@ public class Scripture
             if (_words[index].IsHidden())
             {
                 isHidden = true;
+                Console.Write("\n\nYour hint is: ");
                 _words[index].DisplayWord();
-                break;
+                Console.Write("\n");
             }
         }
     }
@@ -93,16 +93,18 @@ public class Scripture
             }
             else
             {
+
                 word.DisplayWord();
+
             }
 
 
         }
         // Console.WriteLine('\n');
-        HideRandomWord();
+
     }
 
-    private static void DetectEndProgram(int start, int finish)
+    public static void DetectEndProgram(int start)
     {
         if (start < 1)
         {

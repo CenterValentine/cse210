@@ -65,16 +65,20 @@ class Program
             input = BlahMenu();
             if (input.ToLower() == "h")
             {
+                Console.Clear();
+                scripture.DisplayAll();
                 scripture.Hint();
+
             }
 
             else if (input.ToLower() == "quit")
-            { break; }
+            { scripture.DetectEndProgram(0) }
 
             else
             {
                 Console.Clear();
                 scripture.DisplayAll();
+                scripture.HideRandomWord();
             }
 
 

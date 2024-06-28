@@ -42,7 +42,7 @@ public class Word
         return _hidden;
     }
 
-    public void DisplayWord()
+    public void DisplayWord(bool hint = false)
     {
         Console.Write($" {_word}");
     }
