@@ -26,6 +26,7 @@ public class Scripture
     public void hiddenWords()
     {
         _hiddenWords = true;
+        // Console.WriteLine($"Word Hidden{_hiddenWords}.");
     }
     public void DisplayReference()
     {
@@ -37,7 +38,6 @@ public class Scripture
     // Randomly hide 1-3 _words of Scripture.
     public void HideRandomWord()
     {
-
         int hiddenWordsCount = 0;
         hiddenWordsCount++;
         Random random = new Random();
@@ -48,12 +48,17 @@ public class Scripture
             if (!word.IsHidden())
             { unhiddenWords.Add(word); }
         }
-        // Hides unhidden words
+        // Hides unhidden words, updates _hiddenWords to true.
         for (int i = 0; i < randomWHideCount; i++)
         {
             int index = random.Next(unhiddenWords.Count);
             DetectEndProgram(unhiddenWords.Count);
             unhiddenWords[index].Hide();
+            if (_hiddenWords == false)
+            {
+
+                hiddenWords();
+            }
         }
         //  Simple Version
         // {
@@ -63,14 +68,15 @@ public class Scripture
     }
 
     //  Provides one word that has been hidden. 
-    public void Hint(bool firstTime = false)
+    public void Hint()
     {
         Random random = new Random();
         int i = 0;
-        while (_words.Count > i && !firstTime)
+
+        while (_words.Count > i && _hiddenWords == true)
         {
             int index = random.Next(_words.Count);
-            Console.WriteLine(_words[index].IsHidden());
+            // Console.WriteLine(_words[index].IsHidden());
             if (_words[index].IsHidden())
             {
                 Console.Write("\n\nYour hint is: ");
@@ -82,8 +88,12 @@ public class Scripture
 
             i++;
         }
-        if (i == _words.Count)
-        { Console.WriteLine("No words are hidden."); }
+
+        if (i == _words.Count || _hiddenWords == false)
+        {
+            Console.WriteLine("No words are hidden.");
+        }
+
     }
 
     public void DisplayAll()

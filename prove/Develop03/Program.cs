@@ -48,24 +48,25 @@ class Program
                     Console.WriteLine("Enter the text of the scripture:");
                     string referenceContent = Console.ReadLine();
                     scripture = new Scripture(new Reference(referenceText), referenceContent);
+                    Console.Clear();
+                    scripture.DisplayAll();
+                    input = BlahMenu();
                     break;
                 case "h":
-
                     scripture.Hint();
-                    scripture.hiddenWords();
                     input = BlahMenu();
                     break;
                 case "":
                     Console.Clear();
-                    scripture.DisplayAll();
                     scripture.HideRandomWord();
+                    scripture.DisplayAll();
+                
                     input = BlahMenu();
                     break;
                 case "n":
-                    input = BlahMenu();
                     Console.Clear();
                     scripture.DisplayAll();
-                    scripture.HideRandomWord();
+                    input = BlahMenu();
                     break;
                 default:
                     Console.WriteLine("Invalid input. Please try again.");
