@@ -1,5 +1,14 @@
 using System;
 
+//  Exceeds requirements from the following features:
+
+//  1. Hint method feature provides a one word hint of a previously hidden word.
+//  2. Hint feature informs user if no words are hidden.
+//  3. Manually enter scripture reference and text.
+//  4. Menu accepts all available commands at any time.
+//  5. Memory:  Previously hidden words remain hidden.
+//  6. Only pressing Enter will hide words.
+//  7. Program remains functional with invalid input
 
 class Program
 {
@@ -60,7 +69,7 @@ class Program
                     Console.Clear();
                     scripture.HideRandomWord();
                     scripture.DisplayAll();
-                
+
                     input = BlahMenu();
                     break;
                 case "n":
