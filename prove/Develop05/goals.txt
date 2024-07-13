@@ -1,0 +1,3 @@
+Name: Get to Provo, Description: Geto to Provo, Points: 100
+Name: Get to Toquerville, Description: Get to Toquerville, Points: 100
+

@@ -1,0 +1,85 @@
+
+
+3. Checklist goal - x number of completions + bonus points
+6. Records goal completion events
+7. Display list/status of goals
+
+What are good candidates for classes in this program?
+What are the primary responsibilities of each class?
+
+ManageGoals : Goal
+{
+
+    List<goal> _Entries = new List<goal>();
+    _score
+
+    start()
+    {
+        menu()
+    }
+    DisplayPlayerInfo()
+    {}
+
+    CreateGoal()
+    {x}
+
+    ListGoalNames()
+    {}
+
+    ListGoalDetails()
+    {}
+
+    SaveGoals()
+    {}
+
+    LoadGoals()
+    {}
+
+
+
+}
+
+Goal
+{
+_name
+_description
+_points
+
+Goal(name, description, points)
+{
+    
+}
+
+
+void RecordEvent()
+{}
+
+Bool IsComplete()
+{}
+...
+
+
+}
+
+
+
+Simple : Goal
+{
+
+
+
+}
+
+
+//perpetual
+Eternal : Goal
+{
+
+}
+
+
+Checklist : Goal
+{
+
+
+}
