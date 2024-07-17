@@ -32,9 +32,11 @@ class Listing : Activity
     public void Run()
     {
         DisplayStartingMessage();
+        
+        Console.WriteLine("\nStart pondering about the prompt below: ");
         GetRandomPrompt();
-        Console.WriteLine("\nStart pondering about the prompt above: ");
         ShowCountDown();
+
         Console.WriteLine("\nStart writing your list until the timer stops you. \n");
 
         DateTime futureTime = DateTime.Now.AddSeconds(_duration);
@@ -47,6 +49,8 @@ class Listing : Activity
 
         Console.WriteLine("\n Time is up! \n");
         Console.WriteLine($"Here is your list: {string.Join(", ", _responseList)}");
+        System.Threading.Thread.Sleep(2000);
+        CountAndReportActivities();
 
 
 

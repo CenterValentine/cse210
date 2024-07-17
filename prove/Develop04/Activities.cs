@@ -8,6 +8,7 @@ public class Activity
 
     protected int _duration;
 
+    protected int _numberOfActivities;
 
     protected Activity(string name, string description)
     {
@@ -15,6 +16,12 @@ public class Activity
         _description = description;
     }
 
+
+    protected void CountAndReportActivities()
+    {
+        _numberOfActivities++;
+        Console.WriteLine($"You have completed {_numberOfActivities} activities.");
+    }
 
 
     protected void DisplayStartingMessage()

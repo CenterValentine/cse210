@@ -13,6 +13,10 @@ class Breath : Activity
 
         int numberOfBreaths = _duration / 10;
 
+        if (numberOfBreaths < 10){
+            Console.WriteLine("We'll give you at least 10 seconds to complete a breath.");
+        }
+
         if (_duration % 10 != 0)
         {
             numberOfBreaths++;
@@ -27,6 +31,9 @@ class Breath : Activity
         }
         Console.WriteLine("\n");
         DisplayEndingMessage();
+
+        System.Threading.Thread.Sleep(2000);
+        CountAndReportActivities();
     }
 
 }

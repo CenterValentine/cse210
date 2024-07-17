@@ -62,6 +62,8 @@ class Reflect : Activity
         Console.WriteLine("\n Time is up! \n");
 
         DisplayEndingMessage();
+        System.Threading.Thread.Sleep(2000);
+        CountAndReportActivities();
 
     }
 

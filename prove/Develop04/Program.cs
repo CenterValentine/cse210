@@ -2,6 +2,8 @@ using System;
 using System.ComponentModel.Design;
 using System.Diagnostics;
 
+// This program returns the number of activities participated
+// and the breathing activity tells the user who wants an activity less than 10 seconds that they will have one full breath cylce if duration is < 10 seconds.
 class Program
 {
     static void Main(string[] args)
