@@ -1,3 +1,5 @@
-Name: Get to Provo, Description: Geto to Provo, Points: 100
-Name: Get to Toquerville, Description: Get to Toquerville, Points: 100
+Name: Simple Goal| Description: Simple Goal| Points: 100| _isComplete: False
+Name: Simple Goal| Description: Simple Goal| Points: 100| _isComplete: False
+Name: Eternity is a long time| Description: Take a long time to do this one.| Points: 100
+Name: Go some place| Description: Go some place| Points: 100| Amount Completed: 0| Target Amount: 0| Bonus Points: 0
 

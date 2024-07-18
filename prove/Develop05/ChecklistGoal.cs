@@ -11,6 +11,13 @@ public class ChecklistGoal : Goal
         targetAmount = _targetAmount;
         bonus = _bonus;
     }
+
+    public ChecklistGoal(string name, string description, int points, int amountCompleted, int targetAmount, int bonus) : base(name, description, points)
+    {
+        _amountCompleted = amountCompleted;
+        _targetAmount = targetAmount;
+        _bonus = bonus;
+    }
     public override string GetDetailsString()
     { return $"Name: {_name}, Description: {_description}, Points: {_points}, Amount Completed: {_amountCompleted}, Target Amount: {_targetAmount}, Bonus Points: {_bonus}"; }
     public override string GetStringRepresentation()
