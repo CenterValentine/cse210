@@ -15,10 +15,20 @@ public class Address
         _country = country;
     }
 
-    public bool IsLivingInUSA(){
-        if (_country == "USA")
+    public bool IsLivingInUSA()
+    {
+        if (_country == "USA" || _country == "United States" || _country == "United States of America")
         {
             return true;
         }
+        else
+        {
+            return false;
+        }
+    }
+
+    public string GetAddress()
+    {
+        return $"{_street}\n {_city}, {_state}, {_country}";
     }
 }

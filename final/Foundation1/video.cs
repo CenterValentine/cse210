@@ -1,19 +1,18 @@
 using System;
 
-
-// Write a program to keep track of YouTube videos and comments left on them. As mentioned this could be part of a larger project to analyze them, but for this assignment, you will only need to worry about storing the information about a video and the comments.
-// Your program should have a class for a Video that has the responsibility to track the title, author, and length (in seconds) of the video. Each video also has responsibility to store a list of comments, and should have a method to return the number of comments. A comment should be defined by the Comment class which has the responsibility for tracking both the name of the person who made the comment and the text of the comment.
-// Once you have the classes in place, write a program that creates 3-4 videos, sets the appropriate values, and for each one add a list of 3-4 comments (with the commenter's name and text). Put each of these videos in a list.
-// Then, have your program iterate through the list of videos and for each one, display the title, author, length, number of comments (from the method) and then list out all of the comments for that video. Repeat this display for each video in the list.
-// Note: The YouTube example is just to give you a context for creating classes to store information. You will not actually be connecting to YouTube or downloading content in any way.
-
 public class Video
 {
     private string _title;
     private string _author;
-
+    // length of video in seconds
     private int _length;
 
+    private List<Comment> _comments = new List<Comment>();
+
+    public void AddComment(Comment newComment)
+    {
+        _comments.Add(newComment);
+    }
 
     public Video(string title, string author, int length)
     {
@@ -22,18 +21,34 @@ public class Video
         _length = length;
     }
 
-    public List<Comment> _videos = new List<Comment>();
-
-
-    public void AddVideo(Video newVideo)
+    public string GetVideo()
     {
-        _videos.Add(newVideo);
+        // video object
+        return $"{_title}, {_author}, {_length}";
     }
 
-    public int GetCommentCount()
+    public int NumberOfComments()
     {
-
+        int numberOfComments = 0;
+        foreach (Comment comment in _comments)
+        {
+            numberOfComments++;
+        }
+        return numberOfComments;
     }
 
+    public void DisplayVideo()
+    {
+        Console.WriteLine($"Video: {_title} by {_author}");
+        Console.WriteLine($"Length: {_length} seconds");
+        Console.WriteLine($"Number of comments: {NumberOfComments()}\n");
+        foreach (Comment comment in _comments)
+        {
+            comment.DisplayComment();
+        }
+        Console.WriteLine();
+        Console.WriteLine("--------------------------------------------------");
+        Console.WriteLine();
+    }
 
 }

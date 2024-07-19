@@ -10,8 +10,11 @@ public class Customer
     {
         _name = name;
         _address = address;
+    }
 
-
+    public string GetCustomer()
+    {
+        return $"{_name} \n {_address.GetAddress()}";
     }
 
     public bool IsLivingInUSA()

@@ -9,6 +9,22 @@ public class Product
 
     private int _quantity;
 
-    double TotalCost()
+    public Product(string name, string productId, double price, int quantity)
+    {
+        _name = name;
+        _productId = productId;
+        _price = price;
+        _quantity = quantity;
+    }
+
+    public string GetProduct()
+    {
+        return $"{_name}, {_productId}";
+    }
+
+    public double TotalCost()
+    {
+        return _price * _quantity;
+    }
 
 }

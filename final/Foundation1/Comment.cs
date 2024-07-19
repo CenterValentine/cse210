@@ -13,12 +13,9 @@ public class Comment
         _comment = comment;
     }
 
-   public void DisplayComment()
-   {
-       Console.WriteLine($"{_commenter}: {_comment}");
-   }
-
-
-
+    public void DisplayComment()
+    {
+        Console.WriteLine($"{_commenter}: {_comment}");
+    }
 
 }

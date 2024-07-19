@@ -2,14 +2,12 @@ using System;
 
 public class Event
 {
-    private string _title;
-    private string _description;
-    private string _date;
-
-    private string _time;
-    private string _address;
-
-    private List<string> _events;
+    protected string _title;
+    protected string _description;
+    protected string _date;
+    protected string _time;
+    protected string _address;
+    // private List<string> _events;
 
     public Event(string title, string description, string date, string time, string address)
     {
@@ -22,13 +20,17 @@ public class Event
 
     public string StandardDetails()
     {
-        return "";
+        return $"Please join us for the event titled {_title} on {_date} at {_time} located at {_address}.";
     }
 
     public string ShortDetails()
     {
-        return "";
+        String eventType = typeof(Event).Name;
+        // list eventtype
+        return $"{eventType}: {_title} Date: {_date} Time: {_time}";
     }
+
+
 
 
 
