@@ -19,6 +19,7 @@ public class Product
 
     public string GetProduct()
     {
+        // Console.WriteLine($"Products: {_name}, {_productId}");
         return $"{_name}, {_productId}";
     }
 

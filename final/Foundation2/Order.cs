@@ -5,12 +5,22 @@ public class Order
     List<Product> _products;
     Customer _customer;
 
-    public Order(Customer customer)
+    public Order(Customer customer, List<Product> products)
     {
-        _products = new List<Product>();
+        _products = products;
         _customer = customer;
     }
 
+    public Order(Customer customer)
+    {
+        _customer = customer;
+    }
+
+    // add products
+    public void AddProduct(Product product)
+    {
+        _products.Add(product);
+    }
 
     public double TotalPrice()
     {
@@ -36,18 +46,21 @@ public class Order
 
     public string PackingLabel()
     {
-        string packingLabel = "Product Name:  |  Product_id: \n";
+        string packingLabel = "Picklist:\nPick# | Product Name:  |  Product_id: \n";
         int i = 1;
         foreach (Product product in _products)
         {
-            packingLabel += $"{i}: {product.GetProduct()} \n";
+
+            // Console.WriteLine(product.GetProduct());
+            packingLabel += $"{i}: {product.GetProduct().Split(",")[0]} | {product.GetProduct().Split(",")[1]} \n";
+            i++;
         }
         return packingLabel;
     }
 
     public string ShippingLabel()
     {
-        return _customer.GetCustomer();
+        return $"Shipping Label:\n{_customer.GetCustomer().ToString()}";
     }
 
 }
