@@ -16,7 +16,7 @@ public class Running : Activity
 
     public override string GetSummary()
     {
-        return $"{_date} Running ({_length.ToString()} min)- Distance {Distance()} miles. Speed {Speed().ToString()} mph, Pace: {Pace().ToString()} min per mile";
+        return $"{_date}: Ran for {_length.ToString()} min at a distance of {Distance()} miles. Speed {Speed().ToString()} mph, Pace: {Pace().ToString()} min per mile";
     }
 
 }

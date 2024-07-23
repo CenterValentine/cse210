@@ -14,14 +14,17 @@ public abstract class Activity
     }
     public virtual double Distance()
     {
-        return Speed() * _length;
+        // Console.WriteLine($"Distance Base: {Speed() * _length}");
+        return _length * (Speed()/60);
     }
     public virtual double Speed()
     {
-        return 60 / Pace();
+        // Console.WriteLine($"Speed Base: {Pace()}");
+        return Math.Round(60 / Pace(), 2);
     }
     public virtual double Pace()
     {
+        // Console.WriteLine("Pace Base");
         return _length / Distance();
     }
     public abstract string GetSummary();

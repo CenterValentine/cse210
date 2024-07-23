@@ -12,15 +12,19 @@ public class Swimming : Activity
 
     public override double Distance()
     {
-        return _numberOfLaps * 50 / 1000 * 0.62;
+        // Console.WriteLine($"Distance Swimming: {_numberOfLaps * 50 / (1000 * 0.62)}");
+        // round to 2 decimal places
+        return Math.Round(_numberOfLaps * 50 * 0.00062137, 4);
     }
+
     public override double Pace()
     {
-        return _numberOfLaps;
+        // Console.WriteLine($"Pace Swimming: {60 / Distance()}");
+        return Math.Round(_length / Distance(), 3);
     }
 
     public override string GetSummary()
     {
-        return $"{_date} Swimming ({_length.ToString()} min)- Distance {Distance()} miles. Speed {Speed().ToString()} mph, Pace: {Pace().ToString()} min per mile";
+        return $"{_date}: Swam for {_length.ToString()} min at a distance of {Distance()} miles. Speed: {Speed().ToString()} mph. Pace: {Pace().ToString()} min per mile.";
     }
 }

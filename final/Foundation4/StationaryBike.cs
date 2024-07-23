@@ -16,7 +16,7 @@ public class StationaryBike : Activity
 
     public override string GetSummary()
     {
-        return $"{_date} Biking ({_length} min)- Distance {Distance().ToString()} miles, Speed {Speed().ToString()} mph, Pace: {Pace().ToString()} min per mile"; ;
+        return $"{_date}: Biked for {_length.ToString()} min at a distance of {Distance()} miles. Speed {Speed().ToString()} mph, Pace: {Pace().ToString()} min per mile"; ;
     }
 
 
