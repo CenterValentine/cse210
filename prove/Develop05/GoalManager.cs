@@ -3,13 +3,13 @@ using System;
 public class GoalManager
 {
     List<Goal> _goals;
-    int _score;
+    double _score;
     public GoalManager()
     {
         _goals = new List<Goal>();
         _score = 0;
     }
-    
+
 
     public void start()
     {
@@ -43,6 +43,7 @@ public class GoalManager
                     Console.WriteLine("Invalid choice, please try again.");
                     break;
             }
+            Console.WriteLine("Current Score: " + _score);
         }
         Console.WriteLine("Goodbye!");
     }
@@ -62,12 +63,12 @@ public class GoalManager
         {
             case 1:
                 Goal simpleGoal = new SimpleGoal(name, description, points, false);
-                Console.Write($"I've made a Simple Goal called: {name} - {description} was");
+                Console.Write($"I've made a Simple Goal called: '{name} - {description}'\n\n");
                 _goals.Add(simpleGoal);
                 break;
             case 2:
                 Goal eternalGoal = new EternalGoal(name, description, points);
-                Console.Write($"I've made a Eternal Goal called: {name} - {description} was");
+                Console.Write($"I've made a Eternal Goal called: '{name} - {description}'\n\n");
                 _goals.Add(eternalGoal);
                 break;
             case 3:
@@ -76,11 +77,10 @@ public class GoalManager
                 Console.WriteLine("Enter the bonus points you'd like to earn for completing the goal: \n");
                 int bonus = int.Parse(Console.ReadLine());
                 Goal checklistGoal = new ChecklistGoal(name, description, points, targetAmount, bonus);
-                Console.Write($"I've made a Checklist Goal called {name}: {description} {targetAmount}x steps were ");
+                Console.Write($"I've made a Checklist Goal called '{name}: {description}' {targetAmount}x steps were created.\n\n");
                 _goals.Add(checklistGoal);
                 break;
         }
-        Console.Write("created.\n\n");
     }
 
     public void DisplayScore()
@@ -88,14 +88,20 @@ public class GoalManager
 
     public void listGoalNames()
     {
-        Console.WriteLine("Here are your goals: ");
-        int nameCount = 1;
-        foreach (Goal goal in _goals)
+
+        if (_goals.Count == 0)
+        { Console.WriteLine("\nNo Goals Found!\nPlease add or load some goals!\n"); }
+        else
         {
-            Console.WriteLine($"{nameCount}: {goal.GetDetailsString()}");
-            nameCount++;
+            Console.WriteLine("Here are your goals: ");
+            int nameCount = 1;
+            foreach (Goal goal in _goals)
+            {
+                Console.WriteLine($"{nameCount}: {goal.GetDetailsString()}");
+                nameCount++;
+            }
+            Console.WriteLine("\n\n");
         }
-        Console.WriteLine("\n\n");
     }
 
     public void listGoalDetails()
@@ -136,7 +142,8 @@ public class GoalManager
     // Logic for loading goals resolves  by looking for unqiue data paterns, a better method could be developed
     public void loadGoals()
     {
-
+        string fileName = "goals.txt";
+        string[] lines = System.IO.File.ReadAllLines(fileName);
         Console.WriteLine("This action will overwrite your current goals. Are you sure you want to continue? (y/n)");
         string response = Console.ReadLine();
         if (response != "y")
@@ -144,47 +151,57 @@ public class GoalManager
             Console.WriteLine("Loading goals cancelled.");
             return;
         }
-        string fileName = "goals.txt";
-        string[] lines = System.IO.File.ReadAllLines(fileName);
-        // delete all classes
-
-        _goals.Clear();
+        else
+        {
+            Console.WriteLine("loading goals...");
+            // delete existing classes
+            _goals.Clear();
+            _score = 0;
+        }
         foreach (string line in lines)
         {
-            if (line == "")
-            {
-                continue;
-            }
+            if (line == "") { continue; }
             // Console.WriteLine("line: " + line);
             string[] lineItems = line.Split("|");
-            string name = lineItems[0].ToString().Split(": ")[1];
+            string statusRaw = lineItems[0].ToString();
+            bool status = statusRaw == "[X]" ? true : false;
+            string name = lineItems[1].ToString().Split(": ")[1];
             // Console.WriteLine("description items: " + lineItems[1].ToString().Split(": ")[1]);
-            string description = lineItems[1].ToString().Split(": ")[1];
-            int points = int.Parse(lineItems[2].ToString().Split(": ")[1]);
+            string description = lineItems[2].ToString().Split(": ")[1];
+            int points = int.Parse(lineItems[3].ToString().Split(": ")[1]);
             // Console.WriteLine("name: " + name + " description: " + description + " points: " + points);
-            Console.WriteLine("lineItems.Length: " + lineItems.Length);
+            // Console.WriteLine("lineItems.Length: " + lineItems.Length);
+
             switch (lineItems.Length)
             {
-                case 3:
+                case 4:
                     Goal eternalGoal = new EternalGoal(name, description, points);
                     _goals.Add(eternalGoal);
                     break;
-                case 4:
-                    Goal simpleGoal = new SimpleGoal(name, description, points, bool.Parse(lineItems[3].ToString().Split(": ")[1]));
+                case 5:
+                    Goal simpleGoal = new SimpleGoal(name, description, points, status);
                     _goals.Add(simpleGoal);
                     break;
-                case 6:
+                case 7:
                     // Default values = 0
-                    int amountCompleted = int.Parse(lineItems[3].ToString().Split(": ")[1]);
-                    int targetAmount = int.Parse(lineItems[4].ToString().Split(": ")[1]);
-                    int bonus = int.Parse(lineItems[5].ToString().Split(": ")[1]);
-                    Console.WriteLine("name: " + name + " description: " + description + " points: " + points + " amountCompleted: " + amountCompleted + " targetAmount: " + targetAmount + " bonus: " + bonus);
+                    int amountCompleted = int.Parse(lineItems[4].ToString().Split(": ")[1]);
+                    int targetAmount = int.Parse(lineItems[5].ToString().Split(": ")[1]);
+                    int bonus = int.Parse(lineItems[6].ToString().Split(": ")[1]);
+                    if (status)
+                    { _score += bonus; }
+                    // Console.WriteLine("name: " + name + " description: " + description + " points: " + points + " amountCompleted: " + amountCompleted + " targetAmount: " + targetAmount + " bonus: " + bonus);
                     Goal checklistGoal = new ChecklistGoal(name, description, points, amountCompleted, targetAmount, bonus);
-                    Console.WriteLine("checklistGoal: " + checklistGoal.GetDetailsString());
+                    // Console.WriteLine("checklistGoal: " + checklistGoal.GetDetailsString());
                     _goals.Add(checklistGoal);
                     break;
             }
+            if (status)
+            {
+                _score += points;
+
+            }
         }
+        listGoalNames();
     }
 
     public void recordEvent()
@@ -192,8 +209,12 @@ public class GoalManager
         Console.WriteLine("Enter the number of your goal you'd like to update: ");
         listGoalNames();
         int goalChoice = int.Parse(Console.ReadLine());
-        _goals[goalChoice - 1].RecordEvent();
-// _goals.Count + 1
-        
+        double pointsEarned = Math.Round(_goals[goalChoice - 1].RecordEvent(), 2);
+        Console.WriteLine($"You've earned {pointsEarned} points for this goal!\n");
+        _score += pointsEarned;
+
+
     }
+
+
 }

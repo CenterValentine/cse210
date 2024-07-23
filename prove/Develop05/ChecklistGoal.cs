@@ -19,14 +19,29 @@ public class ChecklistGoal : Goal
         _bonus = bonus;
     }
     public override string GetDetailsString()
-    { return $"Name: {_name}, Description: {_description}, Points: {_points}, Amount Completed: {_amountCompleted}, Target Amount: {_targetAmount}, Bonus Points: {_bonus}"; }
+    { return $"{StatusBox()} Name: {_name}, Description: {_description}, Points: {_points}, Amount Completed: {_amountCompleted}, Target Amount: {_targetAmount}, Bonus Points: {_bonus}"; }
     public override string GetStringRepresentation()
-    { return $"Name: {_name}| Description: {_description}| Points: {_points}| Amount Completed: {_amountCompleted}| Target Amount: {_targetAmount}| Bonus Points: {_bonus}"; }
-    public override void RecordEvent()
-    { _amountCompleted = _amountCompleted + 1; }
+    { return $"{StatusBox()}| Name: {_name}| Description: {_description}| Points: {_points}| Amount Completed: {_amountCompleted}| Target Amount: {_targetAmount}| Bonus Points: {_bonus}"; }
+    public override double RecordEvent()
+    {
+        _amountCompleted = _amountCompleted + 1;
+
+        if (IsComplete())
+        {
+            Console.WriteLine($"\nNice job! You earned {_bonus}  bonus points!\n");
+            return _points + _bonus;
+        }
+        else
+        {
+            Console.WriteLine($"\nNice job! You've made progress ({_amountCompleted} out of {_targetAmount}) on your {_name} goal. Here's {_points} points.  Keep it up!\n");
+        }
+
+
+        return _points;
+    }
     public override bool IsComplete()
     {
-        if (_amountCompleted == _targetAmount)
+        if (_amountCompleted == _targetAmount && _amountCompleted != 0)
         {
             _points = _points + _bonus;
             return true;

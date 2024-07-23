@@ -12,11 +12,23 @@ public abstract class Goal
         _description = description;
         _points = points;
     }
+
+    protected string StatusBox()
+    {
+        string statusBox = "[ ]";
+        if (IsComplete())
+        { statusBox = "[X]"; }
+        return statusBox;
+    }
+
     public virtual string GetDetailsString()
-    { return $"Name: {_name}, Description: {_description}, Points: {_points}"; }
+    {
+
+        return $"{StatusBox()} Name: {_name}, Description: {_description}, Points: {_points}";
+    }
     public virtual string GetStringRepresentation()
-    { return $"Name: {_name}| Description: {_description}| Points: {_points}"; }
-    public abstract void RecordEvent();
+    { return $"{StatusBox()}| Name: {_name}| Description: {_description}| Points: {_points}"; }
+    public abstract double RecordEvent();
     public abstract bool IsComplete();
 }
 

@@ -1,5 +1,4 @@
-Name: Simple Goal| Description: Simple Goal| Points: 100| _isComplete: False
-Name: Simple Goal| Description: Simple Goal| Points: 100| _isComplete: False
-Name: Eternity is a long time| Description: Take a long time to do this one.| Points: 100
-Name: Go some place| Description: Go some place| Points: 100| Amount Completed: 0| Target Amount: 0| Bonus Points: 0
+[X]| Name: Go to the store.| Description: Get some Pancake mix at the store.| Points: 100| _isComplete: True
+[ ]| Name: Quest| Description: TOo follow that star. No matter how hopeless.  No matter how far.| Points: 1000
+[ ]| Name: Brush teeth| Description: Brush teeth 3 times today| Points: 300| Amount Completed: 0| Target Amount: 0| Bonus Points: 0
 
