@@ -8,8 +8,8 @@ public class ChecklistGoal : Goal
     public ChecklistGoal(string name, string description, int points, int targetAmount, int bonus) : base(name, description, points)
     {
         _amountCompleted = 0;
-        targetAmount = _targetAmount;
-        bonus = _bonus;
+        _targetAmount = targetAmount;
+        _bonus = bonus;
     }
 
     public ChecklistGoal(string name, string description, int points, int amountCompleted, int targetAmount, int bonus) : base(name, description, points)
@@ -28,7 +28,7 @@ public class ChecklistGoal : Goal
 
         if (IsComplete())
         {
-            Console.WriteLine($"\nNice job! You earned {_bonus}  bonus points!\n");
+            Console.WriteLine($"\nNice job! You've completed this goal and earned {_bonus} bonus points!\n");
             return _points + _bonus;
         }
         else
@@ -36,14 +36,12 @@ public class ChecklistGoal : Goal
             Console.WriteLine($"\nNice job! You've made progress ({_amountCompleted} out of {_targetAmount}) on your {_name} goal. Here's {_points} points.  Keep it up!\n");
         }
 
-
         return _points;
     }
     public override bool IsComplete()
     {
-        if (_amountCompleted == _targetAmount && _amountCompleted != 0)
+        if (_amountCompleted == _targetAmount)
         {
-            _points = _points + _bonus;
             return true;
         }
         else

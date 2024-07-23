@@ -1,7 +1,7 @@
 using System;
 public class EternalGoal : Goal
 {
-    public EternalGoal(string name, string description, int points, double _point_history) : base(name, description, points) { }
+    public EternalGoal(string name, string description, int points) : base(name, description, points) { }
 
     public override double RecordEvent()
     {

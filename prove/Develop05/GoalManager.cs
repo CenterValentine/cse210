@@ -144,7 +144,7 @@ public class GoalManager
     {
         string fileName = "goals.txt";
         string[] lines = System.IO.File.ReadAllLines(fileName);
-        Console.WriteLine("This action will overwrite your current goals. Are you sure you want to continue? (y/n)");
+        Console.WriteLine("This action will overwrite your current goals. Eternal Goal data will be lost.  Are you sure you want to continue? (y/n)");
         string response = Console.ReadLine();
         if (response != "y")
         {
@@ -187,6 +187,7 @@ public class GoalManager
                     int amountCompleted = int.Parse(lineItems[4].ToString().Split(": ")[1]);
                     int targetAmount = int.Parse(lineItems[5].ToString().Split(": ")[1]);
                     int bonus = int.Parse(lineItems[6].ToString().Split(": ")[1]);
+                    _score += amountCompleted * points;
                     if (status)
                     { _score += bonus; }
                     // Console.WriteLine("name: " + name + " description: " + description + " points: " + points + " amountCompleted: " + amountCompleted + " targetAmount: " + targetAmount + " bonus: " + bonus);
