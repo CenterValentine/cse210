@@ -1,0 +1,104 @@
+Program #1 - Youtube
+
+Video
+_title : string
+_author: string
+_length : int
+_comments : List<Comment>
+
+Video(title, author, length, Comment comments)
+GetCommentCount() : intDisplayVideoDetails() : string
+
+Comment
+_name : string
+_comment : string
+
+Program #2
+
+Order
+_products : List<Product>
+_customer : Customer
+TotalPrice() : double
+ShippingCost() : double
+PackingLabel() : string
+ShippingLabel() : string
+
+Customer
+_name
+_address : Address
+
+GetCustomer()
+IsLivingInUSA()
+
+Product
+_name : string
+_productId : string
+_price : double
+_quantity : int
+
+GetProduct()
+TotalCost()
+
+Address
+_street : string
+_city : string
+_state : string
+_country : string
+
+IsLivingInUSA() : Bool
+
+
+Program #3 
+
+Event
+_title : string
+_description : string
+_date : string
+_time : string
+_address : Address
+
+StandardDetails()
+ShortDetails()
+
+Lectures : Event
+_speaker : string
+_capacity : int
+FullDetails() : string
+
+Receptions : Event
+_email : string
+
+FullDetails() : string
+
+OutdoorGathering : Event
+_weather : string
+FullDetails() : string
+
+
+
+
+Program #4 
+
+Activity
+_date : string
+_length : string
+_activities - List<Actvity>
+
+Distanc():double - abstract
+Speed():double -abstract
+Pace():double -abstract
+GetSumary() : string - abstract
+
+#Running : base
+_distance:double
+Distance() : double - override
+GetSummary() : string - override
+
+#StationaryBicycle : base
+_speed:double
+Speed() : double - override
+GetSummary() : string - override
+#Swimming : base_numberOfLaps: int
+
+Pace():double - override
+GetSummary() : string - override
